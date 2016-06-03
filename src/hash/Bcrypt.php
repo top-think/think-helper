@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
+namespace think\helper\hash;
 
 class Bcrypt
 {
@@ -26,7 +27,7 @@ class Bcrypt
         $hash = password_hash($value, PASSWORD_BCRYPT, ['cost' => $cost]);
 
         if ($hash === false) {
-            throw new RuntimeException('Bcrypt hashing not supported.');
+            throw new \RuntimeException('Bcrypt hashing not supported.');
         }
 
         return $hash;

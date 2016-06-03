@@ -35,7 +35,7 @@ class Hash
                 $type = 'md5';
             }
         }
-        if (!self::$handle[$type]) {
+        if (empty(self::$handle[$type])) {
             $class = "\\think\\helper\\hash\\" . ucfirst($type);
             if (!class_exists($class)) {
                 throw new \ErrorException("Not found {$type} hash type!");

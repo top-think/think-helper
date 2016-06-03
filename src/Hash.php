@@ -18,12 +18,12 @@ class Hash
 
     public static function make($value, $type = null, array $options = [])
     {
-        self::handle($type)->make($value, $options);
+        return self::handle($type)->make($value, $options);
     }
 
     public static function check($value, $hashedValue, $type = null, array $options = [])
     {
-        self::handle($type)->check($value, $hashedValue, $options);
+        return self::handle($type)->check($value, $hashedValue, $options);
     }
 
     public static function handle($type)

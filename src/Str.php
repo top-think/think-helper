@@ -48,6 +48,24 @@ class Str
         return false;
     }
 
+    /**
+     * 检查字符串是否以某些字符串开头
+     *
+     * @param  string       $haystack
+     * @param  string|array $needles
+     * @return bool
+     */
+    public static function startsWith($haystack, $needles)
+    {
+        foreach ((array)$needles as $needle) {
+            if ($needle != '' && mb_strpos($haystack, $needle) === 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     /**
      * 获取指定长度的随机字母数字组合的字符串

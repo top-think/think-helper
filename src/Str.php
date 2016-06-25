@@ -120,10 +120,15 @@ class Str
      * @param  string   $string
      * @param  int      $start
      * @param  int|null $length
+     * @param  fill     $string
      * @return string
      */
-    public static function substr($string, $start, $length = null)
+    public static function substr($string, $start, $length = null, $fill='')
     {
-        return mb_substr($string, $start, $length, 'UTF-8');
+        $str = mb_substr($string, $start, $length, 'UTF-8');
+        if($fill && $str !== $string){
+            return $str . $fill;
+        }
+        return $str;
     }
 }

@@ -53,6 +53,9 @@ Time::today();
 // 昨日开始和结束的时间戳
 Time::yesterday();
 
+// 本周开始和结束的时间戳
+Time::week();
+
 // 上周开始和结束的时间戳
 Time::lastWeek();
 
@@ -69,7 +72,7 @@ Time::year();
 Time::lastYear();
 
 // 获取7天前零点到现在的时间戳
-Time::dayToNow(1)
+Time::dayToNow(7)
 
 // 获取7天前零点到昨日结束的时间戳
 Time::dayToNow(7, true)

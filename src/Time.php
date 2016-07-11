@@ -40,6 +40,20 @@ class Time
     }
 
     /**
+     * 返回本周开始和结束的时间戳
+     *
+     * @return array
+     */
+    public static function week()
+    {
+        $timestamp = time();
+        return [
+            strtotime(date('Y-m-d', strtotime("+0 week Monday", $timestamp))),
+            strtotime(date('Y-m-d', strtotime("+0 week Sunday", $timestamp))) + 24 * 3600 - 1
+        ];
+    }
+
+    /**
      * 返回上周开始和结束的时间戳
      *
      * @return array
@@ -49,7 +63,7 @@ class Time
         $timestamp = time();
         return [
             strtotime(date('Y-m-d', strtotime("last week Monday", $timestamp))),
-            strtotime(date('Y-m-d', strtotime("last week Monday", $timestamp))) + 7 * 24 * 3600 - 1
+            strtotime(date('Y-m-d', strtotime("last week Sunday", $timestamp))) + 24 * 3600 - 1
         ];
     }
 
@@ -58,7 +72,7 @@ class Time
      *
      * @return array
      */
-    public static function month()
+    public static function month($everyDay = false)
     {
         return [
             mktime(0, 0, 0, date('m'), 1, date('Y')),
@@ -104,6 +118,11 @@ class Time
             mktime(0, 0, 0, 1, 1, $year),
             mktime(23, 59, 59, 12, 31, $year)
         ];
+    }
+
+    public static function dayOf()
+    {
+
     }
 
     /**
@@ -170,5 +189,10 @@ class Time
     public static function weekToSecond($week = 1)
     {
         return self::daysToSecond() * 7 * $week;
+    }
+
+    private static function startTimeToEndTime()
+    {
+
     }
 }

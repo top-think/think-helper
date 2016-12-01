@@ -23,3 +23,45 @@ if (!function_exists('class_basename')) {
         return basename(str_replace('\\', '/', $class));
     }
 }
+
+if (!function_exists('class_uses_recursive')) {
+    /**
+     *获取一个类里所有用到的trait，包括父类的
+     *
+     * @param $class
+     * @return array
+     */
+    function class_uses_recursive($class)
+    {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
+        $results = [];
+
+        foreach (array_merge([$class => $class], class_parents($class)) as $class) {
+            $results += trait_uses_recursive($class);
+        }
+
+        return array_unique($results);
+    }
+}
+
+if (!function_exists('trait_uses_recursive')) {
+    /**
+     * 获取一个trait里所有引用到的trait
+     *
+     * @param  string $trait
+     * @return array
+     */
+    function trait_uses_recursive($trait)
+    {
+        $traits = class_uses($trait);
+
+        foreach ($traits as $trait) {
+            $traits += trait_uses_recursive($trait);
+        }
+
+        return $traits;
+    }
+}

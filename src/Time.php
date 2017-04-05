@@ -19,9 +19,10 @@ class Time
      */
     public static function today()
     {
+        list($y, $m, $d) = explode('-', date('Y-m-d'));
         return [
-            mktime(0, 0, 0, date('m'), date('d'), date('Y')),
-            mktime(23, 59, 59, date('m'), date('d'), date('Y'))
+            mktime(0, 0, 0, $m, $d, $y),
+            mktime(23, 59, 59, $m, $d, $y)
         ];
     }
 
@@ -74,9 +75,10 @@ class Time
      */
     public static function month($everyDay = false)
     {
+        list($y, $m, $t) = explode('-', date('Y-m-t'));
         return [
-            mktime(0, 0, 0, date('m'), 1, date('Y')),
-            mktime(23, 59, 59, date('m'), date('t'), date('Y'))
+            mktime(0, 0, 0, $m, 1, $y),
+            mktime(23, 59, 59, $m, $t, $y)
         ];
     }
 
@@ -87,8 +89,10 @@ class Time
      */
     public static function lastMonth()
     {
-        $begin = mktime(0, 0, 0, date('m') - 1, 1, date('Y'));
-        $end = mktime(23, 59, 59, date('m') - 1, date('t', $begin), date('Y'));
+        $y = date('Y');
+        $m = date('m');
+        $begin = mktime(0, 0, 0, $m - 1, 1, $y);
+        $end = mktime(23, 59, 59, $m - 1, date('t', $begin), $y);
 
         return [$begin, $end];
     }
@@ -100,9 +104,10 @@ class Time
      */
     public static function year()
     {
+        $y = date('Y');
         return [
-            mktime(0, 0, 0, 1, 1, date('Y')),
-            mktime(23, 59, 59, 12, 31, date('Y'))
+            mktime(0, 0, 0, 1, 1, $y),
+            mktime(23, 59, 59, 12, 31, $y)
         ];
     }
 

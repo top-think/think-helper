@@ -47,10 +47,9 @@ class Time
      */
     public static function week()
     {
-        $timestamp = time();
+        list($y, $m, $d, $w) = explode('-', date('Y-m-d-w'));
         return [
-            strtotime(date('Y-m-d', strtotime("+0 week Monday", $timestamp))),
-            strtotime(date('Y-m-d', strtotime("+0 week Sunday", $timestamp))) + 24 * 3600 - 1
+            mktime(0, 0, 0, $m, $d - $w + 1, $y), mktime(23, 59, 59, $m, $d - $w + 7, $y)
         ];
     }
 

@@ -73,14 +73,21 @@ class Str
     }
 
     /**
-     * 获取指定长度的随机字母数字组合的字符串
+     * 获取指定长度且在指定字母数字组合内随机的字符串
      *
-     * @param  int $length
+     * @param  int          $length
+     * @param  string|array $pool
      * @return string
      */
-    public static function random($length = 16)
+    public static function random($length = 16, $pool = '')
     {
-        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    	if (is_string($pool)) {
+    		if (empty($pool)) {
+    			$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    		}
+    	} else {
+    		$pool = implode('', $pool);
+    	}
 
         return static::substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
     }

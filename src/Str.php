@@ -73,6 +73,20 @@ class Str
     }
 
     /**
+     * 添加指定内容到字符串末尾
+     *
+     * @param  string  $value
+     * @param  string  $cap
+     * @return string
+     */
+    public static function finish($value, $cap)
+    {
+        $quoted = preg_quote($cap, '/');
+
+        return preg_replace('/(?:'.$quoted.')+$/u', '', $value).$cap;
+    }
+    
+    /**
      * 获取指定长度的随机字母数字组合的字符串
      *
      * @param  int $length

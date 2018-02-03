@@ -75,10 +75,19 @@ class Time
     public static function month($everyDay = false)
     {
         list($y, $m, $t) = explode('-', date('Y-m-t'));
-        return [
-            mktime(0, 0, 0, $m, 1, $y),
-            mktime(23, 59, 59, $m, $t, $y)
-        ];
+        
+        if ($everyDay) {  
+            $days = [];
+            for ($day = 1; $day <= $t; $day++) {
+                $days[] = [mktime(0, 0, 0, $m, $day, $y), mktime(23, 59, 59, $m, $day, $y)];
+            }
+            return $days;
+        } else {
+            return [
+                mktime(0, 0, 0, $m, 1, $y),
+                mktime(23, 59, 59, $m, $t, $y)
+            ];
+        }        
     }
 
     /**

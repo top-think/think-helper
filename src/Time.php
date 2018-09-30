@@ -48,6 +48,7 @@ class Time
     public static function week()
     {
         list($y, $m, $d, $w) = explode('-', date('Y-m-d-w'));
+        if($w == 0) $w = 7; //修正周日的问题
         return [
             mktime(0, 0, 0, $m, $d - $w + 1, $y), mktime(23, 59, 59, $m, $d - $w + 7, $y)
         ];

@@ -14,8 +14,8 @@ Str::contains($haystack, $needles)
 // 检查字符串是否以某些字符串结尾
 Str::endsWith($haystack, $needles)
 
-// 获取指定长度的随机字母数字组合的字符串
-Str::random($length = 16)
+// 获取指定长度且在指定字母数字组合内随机的字符串
+Str::random($length = 16, $pool = '')
 
 // 字符串转小写
 Str::lower($value)

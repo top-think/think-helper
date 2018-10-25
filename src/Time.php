@@ -200,4 +200,35 @@ class Time
     {
 
     }
+
+    /**
+     * 计算时间相隔
+     * @param $begin_time
+     * @param $end_time
+     * @param string $format Y:年 M:月 D:天
+     */
+    public static function timeInterval($begin_time = 0, $end_time = 0, $format = 'Y')
+    {
+        $begin_time || $begin_time = time();
+        $end_time || $end_time = time();
+        switch ($format) {
+            case 'Y':
+                $begin_year = date('Y', $begin_time);
+                $end_year = date('Y', $end_time);
+                return $end_year - $begin_year + 1;
+                break;
+            case 'M':
+                $fmonth = date('m', $begin_time);
+                $nmonth = date('m', $end_time);
+                $result = self::timeInterval($begin_time, $end_time) * 12 + $nmonth - $fmonth + 1;
+                return $result;
+                break;
+            case 'D':
+                return ceil(abs(($end_time - $begin_time) / 86400));
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
 }

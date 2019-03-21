@@ -9,7 +9,6 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-
 if (!function_exists('classnames')) {
     /**
      * css样式名生成器
@@ -41,9 +40,9 @@ if (!function_exists('throw_if')) {
     /**
      * 按条件抛异常
      *
-     * @param  mixed             $condition
-     * @param  \Throwable|string $exception
-     * @param  array             ...$parameters
+     * @param mixed             $condition
+     * @param \Throwable|string $exception
+     * @param array             ...$parameters
      * @return mixed
      *
      * @throws \Throwable
@@ -62,9 +61,9 @@ if (!function_exists('throw_unless')) {
     /**
      * 按条件抛异常
      *
-     * @param  mixed             $condition
-     * @param  \Throwable|string $exception
-     * @param  array             ...$parameters
+     * @param mixed             $condition
+     * @param \Throwable|string $exception
+     * @param array             ...$parameters
      * @return mixed
      * @throws \Throwable
      */
@@ -82,7 +81,7 @@ if (!function_exists('app_path')) {
     /**
      * 获取当前应用目录
      *
-     * @param  string $path
+     * @param string $path
      * @return string
      */
     function app_path($path = '')
@@ -95,7 +94,7 @@ if (!function_exists('base_path')) {
     /**
      * 获取应用基础目录
      *
-     * @param  string $path
+     * @param string $path
      * @return string
      */
     function base_path($path = '')
@@ -108,7 +107,7 @@ if (!function_exists('config_path')) {
     /**
      * 获取应用配置目录
      *
-     * @param  string $path
+     * @param string $path
      * @return string
      */
     function config_path($path = '')
@@ -121,7 +120,7 @@ if (!function_exists('public_path')) {
     /**
      * 获取web根目录
      *
-     * @param  string $path
+     * @param string $path
      * @return string
      */
     function public_path($path = '')
@@ -134,7 +133,7 @@ if (!function_exists('runtime_path')) {
     /**
      * 获取web根目录
      *
-     * @param  string $path
+     * @param string $path
      * @return string
      */
     function runtime_path($path = '')
@@ -147,11 +146,31 @@ if (!function_exists('root_path')) {
     /**
      * 获取项目根目录
      *
-     * @param  string $path
+     * @param string $path
      * @return string
      */
     function root_path($path = '')
     {
         return app()->getRootPath() . ($path ? $path . DIRECTORY_SEPARATOR : $path);
+    }
+}
+
+if (!function_exists('tap')) {
+    /**
+     * 对一个值调用给定的闭包，然后返回该值
+     *
+     * @param mixed         $value
+     * @param callable|null $callback
+     * @return mixed
+     */
+    function tap($value, $callback = null)
+    {
+        if (is_null($callback)) {
+            return $value;
+        }
+
+        $callback($value);
+
+        return $value;
     }
 }

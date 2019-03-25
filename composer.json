@@ -18,6 +18,6 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "topthink/framework": "^5.2"
+        "topthink/framework": "^6.0"
     }
 }

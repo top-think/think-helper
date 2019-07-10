@@ -10,11 +10,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "think\\helper\\": "src"
+            "think\\": "src"
         },
         "files": [
             "src/helper.php"
         ]
-    },
-    "minimum-stability": "dev"
+    }
 }

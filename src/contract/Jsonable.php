@@ -4,5 +4,5 @@ namespace think\contract;
 
 interface Jsonable
 {
-    public function toJson($options = 0);
+    public function toJson(int $options = JSON_UNESCAPED_UNICODE): string;
 }

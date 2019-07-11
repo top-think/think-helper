@@ -623,7 +623,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param integer $options json参数
      * @return string
      */
-    public function toJson($options = JSON_UNESCAPED_UNICODE)
+    public function toJson(int $options = JSON_UNESCAPED_UNICODE): string
     {
         return json_encode($this->toArray(), $options);
     }

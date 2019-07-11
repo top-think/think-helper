@@ -4,5 +4,5 @@ namespace think\contract;
 
 interface Arrayable
 {
-    public function toArray();
+    public function toArray(): array;
 }

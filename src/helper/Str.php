@@ -113,7 +113,7 @@ class Str
      * @param  string $value
      * @return int
      */
-    public static function length(string $value): string
+    public static function length(string $value): int
     {
         return mb_strlen($value);
     }

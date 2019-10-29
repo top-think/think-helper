@@ -509,13 +509,13 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param string $order 排序
      * @return $this
      */
-    public function order(string $field, string $order = null)
+    public function order(string $field, string $order = 'asc')
     {
         return $this->sort(function ($a, $b) use ($field, $order) {
             $fieldA = $a[$field] ?? null;
             $fieldB = $b[$field] ?? null;
 
-            return 'desc' == strtolower($order) ? strcmp($fieldB, $fieldA) : strcmp($fieldA, $fieldB);
+            return 'desc' == strtolower($order) ? $fieldB > $fieldA : $fieldA > $fieldB;
         });
     }
 

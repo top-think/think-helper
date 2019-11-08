@@ -473,11 +473,11 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
     /**
      * 返回数据中指定的一列
      * @access public
-     * @param string $columnKey 键名
-     * @param string $indexKey  作为索引值的列
+     * @param string|null $columnKey 键名
+     * @param string      $indexKey  作为索引值的列
      * @return array
      */
-    public function column(string $columnKey, string $indexKey = null)
+    public function column(?string $columnKey, string $indexKey = null)
     {
         return array_column($this->items, $columnKey, $indexKey);
     }

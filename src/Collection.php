@@ -474,7 +474,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 返回数据中指定的一列
      * @access public
      * @param string|null $columnKey 键名
-     * @param string      $indexKey  作为索引值的列
+     * @param string|null $indexKey  作为索引值的列
      * @return array
      */
     public function column(?string $columnKey, string $indexKey = null)

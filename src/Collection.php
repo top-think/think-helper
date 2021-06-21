@@ -242,15 +242,17 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @access public
      * @param mixed  $value 元素
      * @param string $key   KEY
-     * @return void
+     * @return $this
      */
-    public function push($value, string $key = null): void
+    public function push($value, string $key = null)
     {
         if (is_null($key)) {
             $this->items[] = $value;
         } else {
             $this->items[$key] = $value;
         }
+
+        return $this;
     }
 
     /**
@@ -277,15 +279,17 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @access public
      * @param mixed  $value 元素
      * @param string $key   KEY
-     * @return void
+     * @return $this
      */
-    public function unshift($value, string $key = null): void
+    public function unshift($value, string $key = null)
     {
         if (is_null($key)) {
             array_unshift($this->items, $value);
         } else {
             $this->items = [$key => $value] + $this->items;
         }
+
+        return $this;
     }
 
     /**

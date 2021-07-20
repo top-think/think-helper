@@ -142,7 +142,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
     public function intersect($items, string $indexKey = null)
     {
         if ($this->isEmpty() || is_scalar($this->items[0])) {
-            return new static(array_diff($this->items, $this->convertToArray($items)));
+            return new static(array_intersect($this->items, $this->convertToArray($items)));
         }
 
         $intersect  = [];

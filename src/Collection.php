@@ -24,12 +24,18 @@ use Traversable;
 
 /**
  * 数据集管理类
+ *
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @implements ArrayAccess<TKey, TValue>
+ * @implements IteratorAggregate<TKey, TValue>
  */
 class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable, Arrayable, Jsonable
 {
     /**
      * 数据集数据
-     * @var array
+     * @var array<TKey, TValue>
      */
     protected $items = [];
 
@@ -108,8 +114,8 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 比较数组，返回差集
      *
      * @access public
-     * @param mixed  $items    数据
-     * @param string $indexKey 指定比较的键名
+     * @param mixed   $items    数据
+     * @param ?string $indexKey 指定比较的键名
      * @return static
      */
     public function diff($items, string $indexKey = null)
@@ -136,8 +142,8 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 比较数组，返回交集
      *
      * @access public
-     * @param mixed  $items    数据
-     * @param string $indexKey 指定比较的键名
+     * @param mixed   $items    数据
+     * @param ?string $indexKey 指定比较的键名
      * @return static
      */
     public function intersect($items, string $indexKey = null)
@@ -241,8 +247,8 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
     /**
      * 在数组结尾插入一个元素
      * @access public
-     * @param mixed  $value 元素
-     * @param string $key   KEY
+     * @param mixed   $value 元素
+     * @param ?string $key   KEY
      * @return $this
      */
     public function push($value, string $key = null)
@@ -279,7 +285,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 在数组开头插入一个元素
      * @access public
      * @param mixed  $value 元素
-     * @param string $key   KEY
+     * @param ?string $key   KEY
      * @return $this
      */
     public function unshift($value, string $key = null)
@@ -570,7 +576,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      *
      * @access public
      * @param int  $offset       起始位置
-     * @param int  $length       截取长度
+     * @param ?int $length       截取长度
      * @param bool $preserveKeys preserveKeys
      * @return static
      */

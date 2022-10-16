@@ -401,6 +401,10 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
                 case 'not between':
                     [$min, $max] = is_string($value) ? explode(',', $value) : $value;
                     return is_scalar($result) && $result > $max || $result < $min;
+                case 'null':
+                    return $result === null;
+                case 'not null':
+                    return $result !== null;
                 case '==':
                 case '=':
                 default:

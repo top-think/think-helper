@@ -59,6 +59,15 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
         return empty($this->items);
     }
 
+     /**
+     * 是否非空
+     * @access public
+     * @return bool
+     */
+    public function isNotEmpty(): bool{
+        return !$this->isEmpty();
+    }
+
     public function toArray(): array
     {
         return array_map(function ($value) {

@@ -528,7 +528,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
 
             if ($fieldA == $fieldB) return 0;
 
-            // 可以使用 <==> 简化，但是需要 php7.4 +
+            // 可以使用 <=> 简化，但是需要 php7.4 +
             return 'desc' == strtolower($order) ? intval($fieldB > $fieldA ? 1 : -1) : intval($fieldA > $fieldB ? 1 : -1);
         });
     }

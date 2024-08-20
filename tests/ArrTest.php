@@ -55,7 +55,7 @@ class ArrTest extends TestCase
 
     public function testDivide()
     {
-        list($keys, $values) = Arr::divide(['name' => 'ThinkPHP']);
+        [$keys, $values] = Arr::divide(['name' => 'ThinkPHP']);
         $this->assertSame(['name'], $keys);
         $this->assertSame(['ThinkPHP'], $values);
     }

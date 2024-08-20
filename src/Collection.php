@@ -96,10 +96,10 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 按指定键整理数据
      *
      * @param mixed  $items    数据
-     * @param string $indexKey 键名
+     * @param string|null $indexKey 键名
      * @return array
      */
-    public function dictionary($items = null, string &$indexKey = null)
+    public function dictionary($items = null, ?string &$indexKey = null)
     {
         if ($items instanceof self) {
             $items = $items->all();
@@ -122,10 +122,10 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 比较数组，返回差集
      *
      * @param mixed  $items    数据
-     * @param string $indexKey 指定比较的键名
+     * @param string|null $indexKey 指定比较的键名
      * @return static<TKey, TValue>
      */
-    public function diff($items, string $indexKey = null)
+    public function diff($items, ?string $indexKey = null)
     {
         if ($this->isEmpty() || is_scalar($this->items[0])) {
             return new static(array_diff($this->items, $this->convertToArray($items)));
@@ -149,10 +149,10 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 比较数组，返回交集
      *
      * @param mixed  $items    数据
-     * @param string $indexKey 指定比较的键名
+     * @param string|null $indexKey 指定比较的键名
      * @return static<TKey, TValue>
      */
-    public function intersect($items, string $indexKey = null)
+    public function intersect($items, ?string $indexKey = null)
     {
         if ($this->isEmpty() || is_scalar($this->items[0])) {
             return new static(array_intersect($this->items, $this->convertToArray($items)));
@@ -247,10 +247,10 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 在数组结尾插入一个元素
      *
      * @param mixed  $value 元素
-     * @param string $key   KEY
+     * @param string|null $key   KEY
      * @return $this
      */
-    public function push($value, string $key = null)
+    public function push($value, ?string $key = null)
     {
         if (is_null($key)) {
             $this->items[] = $value;
@@ -283,10 +283,10 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 在数组开头插入一个元素
      *
      * @param mixed  $value 元素
-     * @param string $key   KEY
+     * @param string|null $key   KEY
      * @return $this
      */
-    public function unshift($value, string $key = null)
+    public function unshift($value, ?string $key = null)
     {
         if (is_null($key)) {
             array_unshift($this->items, $value);
@@ -336,7 +336,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param callable|null $callback 回调
      * @return static<TKey, TValue>
      */
-    public function filter(callable $callback = null)
+    public function filter(?callable $callback = null)
     {
         if ($callback) {
             return new static(array_filter($this->items, $callback));
@@ -486,7 +486,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param string|null $indexKey  作为索引值的列
      * @return array
      */
-    public function column(?string $columnKey, string $indexKey = null)
+    public function column(?string $columnKey, ?string $indexKey = null)
     {
         return array_column($this->items, $columnKey, $indexKey);
     }
@@ -548,7 +548,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param null          $default
      * @return TValue
      */
-    public function first(callable $callback = null, $default = null)
+    public function first(?callable $callback = null, $default = null)
     {
         return Arr::first($this->items, $callback, $default);
     }
@@ -560,7 +560,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param null          $default
      * @return TValue
      */
-    public function last(callable $callback = null, $default = null)
+    public function last(?callable $callback = null, $default = null)
     {
         return Arr::last($this->items, $callback, $default);
     }
@@ -569,7 +569,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * 截取数组
      *
      * @param int  $offset       起始位置
-     * @param ?int $length       截取长度
+     * @param int|null $length       截取长度
      * @param bool $preserveKeys preserveKeys
      * @return static<TKey, TValue>
      */

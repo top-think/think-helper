@@ -21,12 +21,14 @@ class Str
 
     /**
      * 检查字符串中是否包含某些字符串
-     * @param string       $haystack
+     * @param ?string       $haystack
      * @param string|array $needles
      * @return bool
      */
-    public static function contains(string $haystack, $needles): bool
+    public static function contains(?string $haystack, $needles): bool
     {
+        if (!$haystack) $haystack = '';
+
         foreach ((array) $needles as $needle) {
             if ('' != $needle && mb_strpos($haystack, $needle) !== false) {
                 return true;

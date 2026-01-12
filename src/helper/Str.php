@@ -83,6 +83,7 @@ class Str
     public static function random(int $length = 6, ?int $type = null, string $addChars = ''): string
     {
         $str = '';
+        $type = is_null($type) ? -1 : $type;
         switch ($type) {
             case 0:
                 $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' . $addChars;
